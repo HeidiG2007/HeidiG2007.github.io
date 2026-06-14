@@ -7,7 +7,7 @@
 
 ## The process:
 
-### 1. Set up Nginx Proxy Manager container:
+### Set up Nginx Proxy Manager container:
 Created a stack on Portainer:
 ```
 services:
@@ -19,6 +19,8 @@ services:
       - '6080:80' # Public HTTP Port
       - '6443:443' # Public HTTPS Port
       - '6081:81' # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
     environment:
       TZ: "America/New_York"
       # Postgres parameters:
@@ -30,19 +32,26 @@ services:
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: 'true'
     volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
+      - /volume1/docker/npm/data:/data
+      - /volume1/docker/npm/letsencrypt:/etc/letsencrypt
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
-    image: postgres:17
+    image: postgres:18
     environment:
       POSTGRES_USER: 'npm'
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: 'npm'
+      PGDATA: /var/lib/postgresql/data/pg18
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - /volume1/docker/postgres/postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U npm -d npm"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 ```
 
 I created the stack, and the Nginx proxy manager container instantly failed. I forgot to define the environment variable 
