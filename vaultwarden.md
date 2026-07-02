@@ -1,3 +1,7 @@
+---
+layout: page
+title: Vaultwarden
+---
 # Vaultwarden
 
 ## The process

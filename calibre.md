@@ -1,3 +1,7 @@
+---
+layout: page
+title: Calibre
+---
 # Calibre
 
 ## Goals with this project:

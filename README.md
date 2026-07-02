@@ -1,3 +1,7 @@
+---
+layout: home
+title: README
+---
 # Home-Lab
 
 A repository to document my home lab work

@@ -1,3 +1,7 @@
+---
+layout: page
+title: Watchtower
+---
 # Watchtower
 
 ## Goals with this project:

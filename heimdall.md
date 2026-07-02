@@ -1,3 +1,7 @@
+---
+layout: page
+title: Heimdall
+---
 # Heimdall
 
 Goals with this container:
@@ -17,13 +21,14 @@ services:
       timeout: 5s
       retries: 3
       start_period: 90s
-    restart: on-failure:5
+    restart: unless-stopped
     volumes:
       - /volume1/docker/heimdall:/config:rw 
     environment:
       TZ: Xxxx/Xxxx
       PGID: Xxxx
       PUID: Xxxx
+      APP_URL: https://heimdall.heidigee.duckdns.org:6443
     ports:
       - 8056:80
       - 7543:443

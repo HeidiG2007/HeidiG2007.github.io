@@ -1,3 +1,7 @@
+---
+layout: page
+title: NGINX Proxy Manager
+---
 # Nginx Proxy Manager
 
 ## Goals for this project:

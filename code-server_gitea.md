@@ -1,3 +1,7 @@
+---
+layout: page
+title: Code-server and Gitea
+---
 # Code-server and Gitea
 
 Goals with this project:
